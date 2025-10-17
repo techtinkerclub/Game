@@ -1,41 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CodeQuest Island</title>
-  <style>
-    html, body { margin:0; padding:0; height:100%; background:#f5f7fb; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; }
-    #gamewrap { max-width: 900px; margin: 0 auto; padding: 8px; }
-    .bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0; }
-    button { padding:8px 12px; border:1px solid #ccc; border-radius:8px; background:#fff; }
-    button:active { transform: translateY(1px); }
-    .pill { padding:6px 10px; border-radius: 999px; background:#e8eefc; border:1px solid #c8d6ff; }
-    .note { font-size: 0.9rem; color:#333; }
-    canvas { display:block; margin:0 auto; border-radius:12px; border:1px solid #e0e3ea; background:#ffffff; }
-  </style>
+  <title>Tech Tinker Boss Battle</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="gamewrap">
-    <div class="bar">
-      <span class="pill">CodeQuest Island — v0.1</span>
-      <span class="note">🎯 Goal: reach the star by programming the robot</span>
-    </div>
+  <div class="wrap">
+    <header>
+      <div class="brand">🕹️ Tech Tinker Boss Battle</div>
+      <div class="row">
+        <div class="pill" id="stars">⭐ 0</div>
+        <div class="pill" id="progress-pill">Progress: 0/0</div>
+        <button id="reset" class="ghost smallbtn" title="Reset progress">Reset</button>
+      </div>
+    </header>
 
-    <div class="bar" id="controls" aria-label="Game Controls"></div>
-    <div id="sketch-holder"></div>
+    <main id="screen-levels" class="grid levels"></main>
 
-    <div class="bar">
-      <span class="note">Tip: Set a sequence, choose how many times to <b>repeat</b>, then Run.</span>
-    </div>
+    <section id="screen-game" style="display:none">
+      <div class="hud">
+        <div class="hearts" id="hearts"></div>
+        <div class="bar" title="Boss HP"><div id="hp" class="fill"></div></div>
+        <div class="pill" id="streak">Streak: 0</div>
+        <div class="pill" id="timer">⏱️ —</div>
+        <div class="pill" id="hintLeft">⭐ Hints: 0</div>
+        <button id="useHint">Use Hint</button>
+        <div class="spacer"></div>
+        <button id="quit">Quit</button>
+      </div>
+      <div class="panel" id="qpanel"></div>
+      <div class="note" id="explain"></div>
+    </section>
+
+    <section id="screen-results" style="display:none">
+      <div class="panel">
+        <h2 id="resTitle">Level Complete!</h2>
+        <p id="resSummary"></p>
+        <details>
+          <summary>Review explanations</summary>
+          <ul class="review" id="reviewList"></ul>
+        </details>
+        <div class="row" style="margin-top:12px">
+          <button id="retry">Retry Level</button>
+          <button id="back">Back to Levels</button>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- p5.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-  <!-- Game scripts -->
-  <script src="js/sceneManager.js"></script>
-  <script src="js/scenes/menuScene.js"></script>
-  <script src="js/scenes/loopsLagoon.js"></script>
-  <script src="js/main.js"></script>
+  <div class="toast" id="toast"></div>
+
+  <!-- Load content first -->
+  <script src="questions.js"></script>
+  <!-- Then the engine -->
+  <script src="game.js"></script>
 </body>
 </html>
