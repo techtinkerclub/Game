@@ -576,13 +576,13 @@ window.TTC_DATA = {
         },
         {
           "id": "w4-q9",
-          "question": "Where does the temperature value come from in micro:bit projects?",
+          "question": "Where does the micro:bit’s built-in temperature reading come from?",
           "type": "multiple-choice",
-          "options": ["Onboard temperature sensor", "An external sensor is mandatory", "The light sensor", "The USB cable"],
+          "options": ["A temperature sensor inside the processor", "An external sensor is mandatory", "The light sensor", "The USB cable"],
           "correct": 0,
-          "explanation": "We use the micro:bit’s onboard sensor.",
+          "explanation": "The micro:bit reads temperature from a sensor inside its processor. It can give a useful approximation of room temperature, but it is not a separate air-temperature probe.",
           "difficulty": "hard",
-          "hint": "No extra hardware this week."
+          "hint": "No extra hardware is needed — the reading comes from inside the micro:bit."
         },
         {
           "id": "w4-q10",
@@ -929,7 +929,7 @@ window.TTC_DATA = {
             "Anywhere in the code — it doesn’t matter"
           ],
           "correct": 0,
-          "explanation": "You need to check the edge first, then increase the score inside the loop when that condition is true. Code outside the loop only runs once at the start.",
+          "explanation": "The score change belongs inside the repeated edge check, so it runs each time the sprite reaches the edge.",
           "difficulty": "medium",
           "hint": "Forever loops repeat actions — things outside them happen only once."
         }
