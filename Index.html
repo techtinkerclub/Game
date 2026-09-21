@@ -3,58 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tech Tinker Boss Battle</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="refresh" content="0; url=./index.html" />
+  <title>Tech Tinker: System Rescue</title>
+  <script>location.replace('./index.html' + location.search + location.hash);</script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">🕹️ Tech Tinker Boss Battle</div>
-      <div class="row">
-        <div class="pill" id="stars">⭐ 0</div>
-        <div class="pill" id="progress-pill">Progress: 0/0</div>
-        <button id="reset" class="ghost smallbtn" title="Reset progress">Reset</button>
-      </div>
-    </header>
-
-    <main id="screen-levels" class="grid levels"></main>
-
-    <section id="screen-game" style="display:none">
-      <div class="hud">
-        <div class="hearts" id="hearts"></div>
-        <div class="bar" title="Boss HP"><div id="hp" class="fill"></div></div>
-        <div class="pill" id="streak">Streak: 0</div>
-        <div class="pill" id="timer">⏱️ —</div>
-        <div class="pill" id="hintLeft">⭐ Hints: 0</div>
-        <button id="useHint">Use Hint</button>
-        <div class="spacer"></div>
-        <button id="quit">Quit</button>
-      </div>
-      <div class="panel" id="qpanel"></div>
-      <div class="note" id="explain"></div>
-    </section>
-
-    <section id="screen-results" style="display:none">
-      <div class="panel">
-        <h2 id="resTitle">Level Complete!</h2>
-        <p id="resSummary"></p>
-        <details>
-          <summary>Review explanations</summary>
-          <ul class="review" id="reviewList"></ul>
-        </details>
-        <div class="row" style="margin-top:12px">
-          <button id="retry">Retry Level</button>
-          <button id="back">Back to Levels</button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="toast" id="toast"></div>
-
-  <!-- Load content first -->
-  <script src="questions.js"></script>
-  <!-- Then the engine -->
-  <script src="game.js"></script>
+  <p>Opening <a href="./index.html">Tech Tinker: System Rescue</a>…</p>
 </body>
 </html>

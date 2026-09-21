@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Tech Tinker: System Rescue — restore six coding systems using your micro:bit knowledge." />
+  <title>Tech Tinker: System Rescue</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to game</a>
+
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">🕹️</div>
+        <div>
+          <div class="brand">Tech Tinker: System Rescue</div>
+          <div class="brand-subtitle">Restore the lab, one coding challenge at a time.</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="stat-pill" id="stars" aria-label="Stars earned">⭐ 0 / 18</div>
+        <div class="stat-pill" id="progress-pill" aria-label="Levels cleared">0 / 6 cleared</div>
+        <button id="help" class="icon-button" type="button" aria-label="How to play" title="How to play">?</button>
+        <button id="settings" class="icon-button" type="button" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="screen-levels" aria-labelledby="level-heading">
+        <div class="hero-panel">
+          <div>
+            <p class="eyebrow">MISSION CONTROL</p>
+            <h1 id="level-heading">Restore the Tech Tinker lab</h1>
+            <p class="hero-copy">Six systems have glitched. Repair each one using the coding ideas you learned in club. Missed challenges return later, so progress comes from understanding — not guessing.</p>
+          </div>
+          <div class="hero-badge" aria-hidden="true">
+            <span>STATUS</span>
+            <strong>!</strong>
+          </div>
+        </div>
+        <div id="level-grid" class="grid levels"></div>
+      </section>
+
+      <section id="screen-game" class="screen" hidden aria-labelledby="battle-title">
+        <div class="battle-topbar">
+          <button id="quit" class="text-button" type="button">← Exit battle</button>
+          <div class="battle-week" id="battle-week"></div>
+        </div>
+
+        <section class="boss-panel" aria-label="System repair status">
+          <div class="boss-avatar" id="boss-avatar" aria-hidden="true"></div>
+          <div class="boss-status">
+            <div class="boss-title-row">
+              <div>
+                <p class="eyebrow" id="boss-label">SYSTEM</p>
+                <h2 id="battle-title">System repair</h2>
+              </div>
+              <div class="boss-hp-text" id="boss-hp-text">0 / 12 repaired</div>
+            </div>
+            <div class="hp-bar" role="progressbar" aria-label="Repair progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="hp" class="hp-fill"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="hud" aria-label="Battle status">
+          <div class="hud-item">
+            <span class="hud-label">Integrity</span>
+            <div class="hearts" id="hearts" aria-label="Hearts remaining"></div>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">Mastered</span>
+            <strong id="mastered">0 / 0</strong>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">Streak</span>
+            <strong id="streak">0</strong>
+          </div>
+          <div class="hud-item" id="timer-wrap">
+            <span class="hud-label">Time</span>
+            <strong id="timer">0:00</strong>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">Hints</span>
+            <strong id="hintLeft">2</strong>
+          </div>
+          <button id="useHint" class="hint-button" type="button">🔎 Diagnostic hint</button>
+        </div>
+
+        <section class="question-panel" id="qpanel" aria-live="polite"></section>
+        <section class="feedback" id="explain" hidden aria-live="polite"></section>
+      </section>
+
+      <section id="screen-results" class="screen" hidden aria-labelledby="resTitle">
+        <div class="results-panel">
+          <div class="results-icon" id="results-icon" aria-hidden="true">🏆</div>
+          <p class="eyebrow" id="results-kicker">SYSTEM STATUS</p>
+          <h2 id="resTitle">System restored!</h2>
+          <p id="resSummary" class="results-summary"></p>
+
+          <div class="result-stars" id="result-stars" aria-label="Star rating"></div>
+          <div class="result-stats" id="result-stats"></div>
+
+          <details id="review-details" class="review-box">
+            <summary>Questions to revisit <span id="review-count"></span></summary>
+            <ul class="review" id="reviewList"></ul>
+          </details>
+
+          <div class="result-actions">
+            <button id="retry" type="button">Play again</button>
+            <button id="back" class="secondary" type="button">Back to levels</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="help-dialog" class="modal">
+    <form method="dialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">HOW TO PLAY</p>
+          <h2>Restore each system by mastering every challenge</h2>
+        </div>
+        <button class="icon-button close-dialog" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div class="how-grid">
+        <div><span aria-hidden="true">🛡️</span><strong>Protect system integrity</strong><p>A wrong answer costs one integrity point. You get three per mission.</p></div>
+        <div><span aria-hidden="true">🔁</span><strong>Learn from mistakes</strong><p>Missed questions return later so you can try them again.</p></div>
+        <div><span aria-hidden="true">⚡</span><strong>Build a clean compile</strong><p>Correct answers in a row build a streak, but every challenge still has to be repaired.</p></div>
+        <div><span aria-hidden="true">🔎</span><strong>Run diagnostics</strong><p>Each mission includes two hints. Diagnostics help you think without costing your rating.</p></div>
+      </div>
+      <p class="keyboard-tip"><strong>Keyboard:</strong> press 1–4 for multiple-choice answers, H for a hint, and Enter to continue after feedback.</p>
+      <button class="wide" value="default">Got it</button>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog" class="modal compact-modal">
+    <form method="dialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">SETTINGS</p>
+          <h2>Game options</h2>
+        </div>
+        <button class="icon-button close-dialog" value="cancel" aria-label="Close">×</button>
+      </div>
+      <label class="setting-row">
+        <span><strong>Show timer</strong><small>Display elapsed battle time. There is no time limit.</small></span>
+        <input id="setting-timer" type="checkbox" checked />
+      </label>
+      <div class="settings-actions">
+        <button id="reset" class="danger secondary" type="button">Reset all progress</button>
+        <button value="default">Done</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="reset-dialog" class="modal compact-modal">
+    <form method="dialog">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">RESET PROGRESS</p>
+          <h2>Start again from Week 1?</h2>
+        </div>
+      </div>
+      <p>This clears unlocked levels, star ratings and best results on this device. It cannot be undone.</p>
+      <div class="settings-actions">
+        <button value="cancel" class="secondary">Keep progress</button>
+        <button id="confirm-reset" value="default" class="danger">Reset everything</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="questions.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
